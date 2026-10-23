@@ -5,6 +5,7 @@
 To repozytorium zawiera **przykłady kodu prezentowane i omawiane podczas zajęć laboratoryjnych** z programowania w języku C++.
 
 Repozytorium służy przede wszystkim do:
+
 - łatwego dostępu do przykładów z zajęć,
 - uruchamiania i modyfikowania przykładowych programów,
 - samodzielnego eksperymentowania z kodem.
@@ -26,7 +27,9 @@ Jeżeli nie masz jeszcze konta GitHub:
 2. zaloguj się na swoje konto,
 3. otwórz repozytorium prowadzącego:
 
-    PK-26-27
+```text
+PK-26-27
+```
 
 ### Utwórz własną kopię repozytorium: Fork
 
@@ -39,7 +42,9 @@ Na stronie repozytorium prowadzącego:
 3. jako właściciela wybierz swoje konto GitHub,
 4. nazwę repozytorium możesz pozostawić bez zmian:
 
-    PK-26-27
+```text
+PK-26-27
+```
 
 5. kliknij **Create fork**.
 
@@ -47,7 +52,9 @@ Po chwili GitHub utworzy na Twoim koncie własną kopię repozytorium.
 
 Adres repozytorium będzie wyglądał mniej więcej tak:
 
-    https://github.com/TWOJ_LOGIN/PK-26-27
+```text
+https://github.com/TWOJ_LOGIN/PK-26-27
+```
 
 Od tej chwili pracuj na **swojej kopii repozytorium**, a nie bezpośrednio na repozytorium prowadzącego.
 
@@ -64,13 +71,16 @@ Po chwili w przeglądarce otworzy się Visual Studio Code z przygotowanym środo
 
 Nie musisz ręcznie pobierać repozytorium ani używać poleceń takich jak:
 
-    git clone
-    git init
-    git pull
+```text
+git clone
+git init
+git pull
+```
 
 Pracujesz teraz na własnej kopii repozytorium.
 
 Możesz swobodnie:
+
 - modyfikować przykłady,
 - tworzyć własne pliki `.cpp`,
 - eksperymentować z kodem,
@@ -90,7 +100,9 @@ Po zmianie lub utworzeniu pliku:
 2. zobaczysz listę zmienionych lub nowych plików,
 3. wpisz krótki opis zmian, np.:
 
-    Dodano własne przykłady z lab01
+```text
+Dodano własne przykłady z lab01
+```
 
 4. kliknij **Commit**,
 5. następnie kliknij **Sync Changes** lub **Push**, jeżeli taka opcja się pojawi.
@@ -99,12 +111,117 @@ Po wykonaniu synchronizacji pliki będą zapisane w Twoim repozytorium na GitHub
 
 Możesz sprawdzić je później, otwierając swoje repozytorium:
 
-    https://github.com/TWOJ_LOGIN/PK-26-27
+```text
+https://github.com/TWOJ_LOGIN/PK-26-27
+```
 
 Nie wysyłasz w ten sposób zmian do repozytorium prowadzącego. Zapisujesz je wyłącznie we własnym forku.
 
 > **Ważne:** własne repozytorium może służyć jako miejsce do przechowywania Twoich przykładów i ćwiczeń.  
 > Zadania wymagane do zaliczenia nadal oddajemy zgodnie z instrukcjami znajdującymi się na **UPEL-u**.
+
+### Co zrobić, gdy Git nie pozwala wykonać `Push` lub `Sync Changes`?
+
+Może się zdarzyć, że w repozytorium na GitHubie znajdują się już zmiany, których nie ma jeszcze w Twoim Codespace.
+
+W takiej sytuacji przy próbie wykonania `Push` lub `Sync Changes` Git może poinformować, że lokalna i zdalna wersja gałęzi `main` różnią się od siebie.
+
+Najpierw sprawdź stan repozytorium:
+
+```bash
+git status
+```
+
+Jeżeli masz niezapisane zmiany, najpierw wykonaj commit.
+
+Następnie pobierz i połącz zmiany z gałęzi `main` w repozytorium zdalnym:
+
+```bash
+git pull --no-rebase origin main
+```
+
+Polecenie:
+
+```bash
+git pull
+```
+
+pobiera zmiany ze zdalnego repozytorium i łączy je z Twoją lokalną wersją.
+
+Opcja:
+
+```bash
+--no-rebase
+```
+
+oznacza, że Git ma połączyć obie historie za pomocą zwykłego **merge**, zamiast wykonywać `rebase`.
+
+Jeżeli wszystko przebiegnie poprawnie, możesz ponownie wykonać:
+
+```bash
+git push
+```
+
+albo użyć przycisku:
+
+```text
+Sync Changes
+```
+
+#### Jeśli Git zgłosi konflikt
+
+Polecenie:
+
+```bash
+git pull --no-rebase origin main
+```
+
+nie usuwa automatycznie konfliktów w kodzie.
+
+Jeżeli ten sam fragment pliku został zmieniony lokalnie i w repozytorium zdalnym, Git może zgłosić konflikt.
+
+W pliku mogą wtedy pojawić się oznaczenia podobne do:
+
+```text
+<<<<<<< HEAD
+Twoja wersja
+=======
+Wersja pobrana z GitHuba
+>>>>>>> origin/main
+```
+
+Należy:
+
+1. otworzyć plik z konfliktem,
+2. zdecydować, która wersja kodu ma pozostać,
+3. usunąć znaczniki:
+
+```text
+<<<<<<<
+=======
+>>>>>>>
+```
+
+4. zapisać plik,
+5. dodać rozwiązany plik:
+
+```bash
+git add nazwa_pliku.cpp
+```
+
+6. zakończyć scalanie:
+
+```bash
+git commit
+```
+
+7. wysłać zmiany:
+
+```bash
+git push
+```
+
+> **Uwaga:** `git pull --no-rebase origin main` stosujemy wtedy, gdy lokalna i zdalna historia gałęzi `main` się różnią albo `push` został odrzucony, ponieważ zdalne repozytorium zawiera nowsze zmiany. Nie trzeba wykonywać tego polecenia po każdym commicie.
 
 ---
 
@@ -116,9 +233,11 @@ Podczas pierwszego uruchomienia może pojawić się pytanie o zgodę na instalac
 
 W takim przypadku wybierz odpowiednią opcję potwierdzającą zgodę, np.:
 
-    Allow
-    Install
-    Trust
+```text
+Allow
+Install
+Trust
+```
 
 W środowisku będą używane między innymi rozszerzenia:
 
@@ -133,21 +252,23 @@ Nie musisz instalować ich ręcznie, jeśli Codespaces zrobi to automatycznie.
 
 Materiały są podzielone według kolejnych laboratoriów:
 
-    PK-26-27/
-    ├── README.md
-    ├── lab01/
-    │   ├── README.md
-    │   ├── lab01_zad01.cpp
-    │   ├── lab01_zad02.cpp
-    │   └── lab01_zad03.cpp
-    ├── lab02/
-    │   ├── README.md
-    │   ├── lab02_zad01.cpp
-    │   └── lab02_zad02.cpp
-    ├── lab03/
-    │   └── ...
-    ├── .devcontainer/
-    └── .vscode/
+```text
+PK-26-27/
+├── README.md
+├── lab01/
+│   ├── README.md
+│   ├── lab01_zad01.cpp
+│   ├── lab01_zad02.cpp
+│   └── lab01_zad03.cpp
+├── lab02/
+│   ├── README.md
+│   ├── lab02_zad01.cpp
+│   └── lab02_zad02.cpp
+├── lab03/
+│   └── ...
+├── .devcontainer/
+└── .vscode/
+```
 
 W każdym katalogu `labXX` mogą znajdować się:
 
@@ -157,7 +278,9 @@ W każdym katalogu `labXX` mogą znajdować się:
 
 Przed rozpoczęciem pracy z danym laboratorium warto otworzyć jego plik:
 
-    labXX/README.md
+```text
+labXX/README.md
+```
 
 ---
 
@@ -167,14 +290,18 @@ Programy piszemy w języku **C++**.
 
 Pliki zawierające kod źródłowy C++ muszą mieć rozszerzenie:
 
-    .cpp
+```text
+.cpp
+```
 
 Przykładowe poprawne nazwy plików:
 
-    program.cpp
-    lab01_zad01.cpp
-    petla.cpp
-    tablice.cpp
+```text
+program.cpp
+lab01_zad01.cpp
+petla.cpp
+tablice.cpp
+```
 
 ---
 
@@ -187,7 +314,9 @@ Aby uruchomić program:
 1. otwórz odpowiedni katalog, np. `lab01`,
 2. otwórz plik `.cpp`, np.:
 
-    lab01_zad01.cpp
+```text
+lab01_zad01.cpp
+```
 
 3. kliknij przycisk **Run ▶** znajdujący się w prawym górnym rogu edytora,
 4. wybierz **Run Code**, jeśli pojawi się kilka opcji.
@@ -196,19 +325,27 @@ Program zostanie automatycznie skompilowany i uruchomiony.
 
 Plik wynikowy zostanie zapisany w katalogu:
 
-    build/
+```text
+build/
+```
 
 z rozszerzeniem:
 
-    .out
+```text
+.out
+```
 
 Przykładowo dla pliku:
 
-    lab01_zad01.cpp
+```text
+lab01_zad01.cpp
+```
 
 powstanie:
 
-    build/lab01_zad01.out
+```text
+build/lab01_zad01.out
+```
 
 Nie musisz ręcznie kompilować programu przed użyciem przycisku Run.
 
@@ -220,7 +357,9 @@ Tryb Debug może wyświetlać dodatkowe informacje techniczne związane z debugg
 
 Na początku zajęć korzystamy więc z:
 
-    Run Code ▶
+```text
+Run Code ▶
+```
 
 ---
 
@@ -232,17 +371,23 @@ Podczas pracy warto znać kilka podstawowych poleceń terminala.
 
 Wyświetla katalog, w którym aktualnie się znajdujemy.
 
-    pwd
+```bash
+pwd
+```
 
 ### `ls`
 
 Wyświetla zawartość aktualnego katalogu.
 
-    ls
+```bash
+ls
+```
 
 Przykładowo:
 
-    README.md  lab01  lab02  lab03
+```text
+README.md  lab01  lab02  lab03
+```
 
 ### `cd`
 
@@ -250,17 +395,33 @@ Pozwala przejść do innego katalogu.
 
 Aby wejść do katalogu `lab01`:
 
-    cd lab01
+```bash
+cd lab01
+```
 
 Aby wrócić o jeden poziom wyżej:
 
-    cd ..
+```bash
+cd ..
+```
 
 ### `clear`
 
 Czyści zawartość terminala:
 
-    clear
+```bash
+clear
+```
+
+### `git status`
+
+Pokazuje aktualny stan repozytorium:
+
+```bash
+git status
+```
+
+Dzięki temu można sprawdzić między innymi, które pliki zostały zmienione i czy trwa rozwiązywanie konfliktu.
 
 ---
 
@@ -270,15 +431,21 @@ Program można również skompilować ręcznie z poziomu terminala.
 
 Podczas zajęć korzystamy z kompilatora:
 
-    g++
+```text
+g++
+```
 
 W tym repozytorium pliki wynikowe zapisujemy w katalogu:
 
-    build/
+```text
+build/
+```
 
 i nadajemy im rozszerzenie:
 
-    .out
+```text
+.out
+```
 
 GitHub Codespaces działa w środowisku Linux, dlatego program wykonywalny nie musi mieć rozszerzenia `.exe`.
 
@@ -286,40 +453,56 @@ Najwygodniej wykonywać kompilację z katalogu głównego repozytorium.
 
 Możesz sprawdzić, gdzie aktualnie się znajdujesz, poleceniem:
 
-    pwd
+```bash
+pwd
+```
 
 Powinieneś znajdować się w katalogu podobnym do:
 
-    /workspaces/PK-26-27
+```text
+/workspaces/PK-26-27
+```
 
 Jeżeli chcesz skompilować plik:
 
-    lab01/lab01_zad01.cpp
+```text
+lab01/lab01_zad01.cpp
+```
 
 wykonaj:
 
-    mkdir -p build
-    g++ lab01/lab01_zad01.cpp -o build/lab01_zad01.out
+```bash
+mkdir -p build
+g++ lab01/lab01_zad01.cpp -o build/lab01_zad01.out
+```
 
 Następnie uruchom program:
 
-    ./build/lab01_zad01.out
+```bash
+./build/lab01_zad01.out
+```
 
-Cały proces wygląda więc następująco:
+Cały proces:
 
-    mkdir -p build
-    g++ lab01/lab01_zad01.cpp -o build/lab01_zad01.out
-    ./build/lab01_zad01.out
+```bash
+mkdir -p build
+g++ lab01/lab01_zad01.cpp -o build/lab01_zad01.out
+./build/lab01_zad01.out
+```
 
 Polecenie:
 
-    mkdir -p build
+```bash
+mkdir -p build
+```
 
 tworzy katalog `build`, jeśli jeszcze nie istnieje.
 
 Opcja:
 
-    -o build/lab01_zad01.out
+```text
+-o build/lab01_zad01.out
+```
 
 określa nazwę i miejsce zapisania programu wynikowego.
 
@@ -335,11 +518,15 @@ Jeżeli masz pytanie dotyczące przykładów z laboratoriów, kodu C++ lub pracy
 
 Pytania techniczne zadawaj w kategorii:
 
-    Q&A
+```text
+Q&A
+```
 
 Ogłoszenia dotyczące repozytorium będą publikowane w kategorii:
 
-    Announcements
+```text
+Announcements
+```
 
 Aby zadawać pytania w Discussions, musisz być zalogowany na swoje konto GitHub.
 
